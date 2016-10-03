@@ -7,30 +7,68 @@ public class Block {
 	 * edge in the top front
 	 * center in front
 	 */
-	
+	Face fOne,fTwo,fThree;
 	Piece_Type blockType;
 	int posX,posY,posZ;
 	Block(Colors front, Colors up, Colors right){
 		blockType = Piece_Type.CORNER;
-		Face fOne,fTwo,fThree;
 		fOne = new Face(Orientations.FRONT,front);
 		fTwo = new Face(Orientations.UP,up);
 		fThree = new Face(Orientations.RIGHT,right);
 		
 	}
+	
 	Block(Colors front, Colors up){
 		blockType = Piece_Type.EDGE;
-		Face fOne,fTwo;
 		fOne = new Face(Orientations.FRONT,front);
 		fTwo = new Face(Orientations.UP,up);
 	}
+	
 	Block(Colors front){
 		blockType = Piece_Type.FACE_CENTER;
-		Face fOne;
 		fOne = new Face(Orientations.FRONT,front);
 	}
+	
 	Block(){
 		blockType = Piece_Type.CUBE_CENTER;
 	}
+
+	public Face getfOne() {
+		return fOne;
+	}
+	public Face getfTwo() {
+		return fTwo;
+	}
+	public Face getfThree() {
+		return fThree;
+	}
+	public Piece_Type getBlockType() {
+		return blockType;
+	}
+	public int getPosX() {
+		return posX;
+	}
+	public int getPosY() {
+		return posY;
+	}
+	public int getPosZ() {
+		return posZ;
+	}
+	public void setPosX(int posX) {
+		this.posX = posX;
+	}
+	public void setPosY(int posY) {
+		this.posY = posY;
+	}
+	public void setPosZ(int posZ) {
+		this.posZ = posZ;
+	}
 	
+	public void rotate(String axis){
+		
+	}
+	
+	public void move(String axis){
+		
+	}
 }
