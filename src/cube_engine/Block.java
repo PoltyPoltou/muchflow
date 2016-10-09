@@ -1,6 +1,6 @@
 package cube_engine;
 
-public class Block {
+public abstract class Block {
 	/*a block represents a piece of the rubik's cube
 	By default pieces are in a given position
 	 * Corners in the top right front
@@ -8,41 +8,30 @@ public class Block {
 	 * center in front
 	 */
 	Face fOne,fTwo,fThree;
-	Piece_Type blockType;
+	PieceType blockType;
 	int posX,posY,posZ;
-	Block(Colors front, Colors up, Colors right){
-		blockType = Piece_Type.CORNER;
-		fOne = new Face(Orientations.FRONT,front);
-		fTwo = new Face(Orientations.UP,up);
-		fThree = new Face(Orientations.RIGHT,right);
-		
-	}
-	
-	Block(Colors front, Colors up){
-		blockType = Piece_Type.EDGE;
-		fOne = new Face(Orientations.FRONT,front);
-		fTwo = new Face(Orientations.UP,up);
-	}
-	
-	Block(Colors front){
-		blockType = Piece_Type.FACE_CENTER;
-		fOne = new Face(Orientations.FRONT,front);
-	}
-	
-	Block(){
-		blockType = Piece_Type.CUBE_CENTER;
-	}
 
 	public Face getfOne() {
-		return fOne;
+		if(this.blockType!=PieceType.CUBE_CENTER){
+			return fOne;
+		}
+		return null;
 	}
 	public Face getfTwo() {
+		if(this.blockType!=PieceType.CUBE_CENTER&&
+		   this.blockType!=PieceType.FACE_CENTER){
 		return fTwo;
+		}
+		return null;
 	}
 	public Face getfThree() {
-		return fThree;
+		if(this.blockType==PieceType.CORNER){
+			return fThree;
+		}
+		return null;
 	}
-	public Piece_Type getBlockType() {
+	
+	public PieceType getBlockType() {
 		return blockType;
 	}
 	public int getPosX() {
@@ -64,11 +53,6 @@ public class Block {
 		this.posZ = posZ;
 	}
 	
-	public void rotate(String axis){
-		
-	}
-	
-	public void move(String axis){
-		
-	}
+	abstract public void rotate(char axis);
+	abstract public void move(char axis);
 }
